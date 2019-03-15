@@ -33,14 +33,15 @@ private Connection con;
      * Web service operation
      */
     @WebMethod(operationName = "agregarTransporte")
-    public Boolean agregarTransporte(@WebParam(name = "transporte") Object objeto) throws SQLException {
+    public Boolean agregarTransporte(@WebParam(name = "transporte") Object objeto,@WebParam(name = "lineaTransportista") int id) throws SQLException {
          Transportes transporte = (Transportes)objeto;
-        String _sql = "INSERT INTO SDEduardo.transportees (placas, marca, modelo, descripcion) VALUES (?,?,?,?)";
+        String _sql = "INSERT INTO SDEduardo.transportees (placas, marca, modelo, descripcion,id) VALUES (?,?,?,?,?)";
         PreparedStatement _st = this.con.prepareStatement(_sql);
         _st.setString(1, transporte.getPlacas());
         _st.setString(2, transporte.getMarca());
         _st.setString(3, transporte.getModelo());
         _st.setString(4, transporte.getDescripcion());
+        _st.setInt(5, id);
 
         boolean resultado = _st.execute();
         if(_st != null){
