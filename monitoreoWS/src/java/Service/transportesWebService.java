@@ -27,16 +27,16 @@ public class transportesWebService {
         this._con = _con;
     }
 
-    public boolean agregarRegistro(@WebParam(name = "transportes") Object o) throws Exception {
+    public boolean agregarRegistro(@WebParam(name = "transportes") Object o, @WebParam(name ="lineastransportistas") int id) throws Exception {
         Transportes tps = (Transportes) o;
-        LineasTransportistas lp = new LineasTransportistas();
+        
         String _sql = "INSERT INTO SDEduardo.transportes (placas, marca, modelo, descripcion, lineastransportistas) VALUES (?,?,?,?,?)";
         PreparedStatement _st = this._con.prepareStatement(_sql);
         _st.setString(1, tps.getPlacas());
         _st.setString(2, tps.getMarca());
         _st.setString(3, tps.getModelo());
         _st.setString(4, tps.getDescripcion());
-        _st.setInt(5, lp.getId());
+        _st.setInt(5, id);
 
         boolean resultado = _st.execute();
         if (_st != null) {
