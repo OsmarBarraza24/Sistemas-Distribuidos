@@ -4,8 +4,6 @@
     <service name="ConductoresWebService">
       <implementation-class>Service.ConductoresWebService</implementation-class>
     </service>
-    <service name="transportesWebService">
-      <implementation-class>Service.transportesWebService</implementation-class>
     </service>
   </services>
   <clients/>
