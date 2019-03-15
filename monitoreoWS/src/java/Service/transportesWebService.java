@@ -26,27 +26,33 @@ public class transportesWebService {
     public transportesWebService(Connection _con) {
         this._con = _con;
     }
-
-    public boolean agregarRegistro(@WebParam(name = "transportes") Object o, @WebParam(name ="lineastransportistas") int id) throws Exception {
+    
+    @WebMethod(operationName = "agregarTransporte")
+    public boolean agregarTransporte(@WebParam(name = "transportes") Object o) throws Exception {
+        
         Transportes tps = (Transportes) o;
         
-        String _sql = "INSERT INTO SDEduardo.transportes (placas, marca, modelo, descripcion, lineastransportistas) VALUES (?,?,?,?,?)";
+        String _sql = "INSERT INTO SDEduardo.transportes (placas, marca, modelo, descripcion, lineasTransportista) VALUES (?,?,?,?,?)";
+
         PreparedStatement _st = this._con.prepareStatement(_sql);
+
         _st.setString(1, tps.getPlacas());
         _st.setString(2, tps.getMarca());
         _st.setString(3, tps.getModelo());
         _st.setString(4, tps.getDescripcion());
-        _st.setInt(5, id);
+        _st.setInt(5, tps.getLineasTransportistas().getId());
 
         boolean resultado = _st.execute();
+        
         if (_st != null) {
             _st.close();
         }
+        
         return resultado;
     }
 
-    @WebMethod(operationName = "consultarRegistros")
-    public Object consultarRegistros() throws Exception {
+    @WebMethod(operationName = "consultarRegistrosTransportes")
+    public Object consultarRegistrosTransportes() throws Exception {
 
         String _sql = "SELECT * FROM SDEduardo.transportes";
         PreparedStatement _st = this._con.prepareStatement(_sql);
@@ -69,7 +75,7 @@ public class transportesWebService {
     }
 
     @WebMethod(operationName = "modificarTransporte")
-    public boolean modificarConductor(@WebParam(name = "conductor") Object o) throws Exception {
+    public boolean modificarTransporte(@WebParam(name = "conductor") Object o) throws Exception {
         Transportes tps = (Transportes) o;
         LineasTransportistas lp = new LineasTransportistas();
         String _sql = "UPDATE SDEduardo.conductores SET placas=" + tps.getPlacas() + ", marca=" + tps.getMarca() + ", modelo=" + tps.getModelo()
@@ -82,8 +88,8 @@ public class transportesWebService {
         return resultado;
     }
 
-    @WebMethod(operationName = "consultarRegistroPorId")
-    public Object consultarRegistroPorId(int id) throws Exception {
+    @WebMethod(operationName = "consultarRegistroTransportePorId")
+    public Object consultarRegistroTransportePorId(int id) throws Exception {
         String _sql = "SELECT * FROM SDEduardo.transportes WHERE id=" + id;
         PreparedStatement _st = this._con.prepareStatement(_sql);
         if (_st != null) {

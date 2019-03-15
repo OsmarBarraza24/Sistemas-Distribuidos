@@ -31,7 +31,7 @@ public class UsuariosWebService {
      * This is a sample web service operation
      */
     @WebMethod(operationName = "agregarUsuario")
-    public boolean agregarRegistro(@WebParam(name = "usuario") Object o) throws Exception {
+    public boolean agregarUsuario(@WebParam(name = "usuario") Object o) throws Exception {
         Usuarios usuario = (Usuarios)o;
         String _sql = "INSERT INTO SDEduardo.usuarios (nombreCompleto, cuentaCorreo, contrasena) VALUES (?,?,?)";
         PreparedStatement _st = this._con.prepareStatement(_sql);
@@ -46,7 +46,7 @@ public class UsuariosWebService {
     }
     
     @WebMethod(operationName = "eliminarUsuario")
-    public boolean eliminarConductor(@WebParam(name = "id") int id) throws Exception{
+    public boolean eliminarUsuario(@WebParam(name = "id") int id) throws Exception{
         String _sql = "DELETE FROM SDEduardo.usuarios WHERE id="+id;
         PreparedStatement _st = this._con.prepareStatement(_sql);
         boolean resultado = _st.execute();
@@ -57,7 +57,7 @@ public class UsuariosWebService {
     }
     
     @WebMethod(operationName = "modificarUsuario")
-    public boolean modificarConductor(@WebParam(name = "usuario") Object o) throws Exception{
+    public boolean modificarUsuario(@WebParam(name = "usuario") Object o) throws Exception{
         Usuarios usuario = (Usuarios)o;
         String _sql = "UPDATE SDEduardo.usuarios SET nombreCompleto="+usuario.getNombreCompleto()+", cuentaCorreo="+usuario.getCuentaCorreo()+", contrasena="+usuario.getContrasena() + " WHERE id="+usuario.getId();
         PreparedStatement _st = this._con.prepareStatement(_sql);
@@ -68,7 +68,7 @@ public class UsuariosWebService {
         return resultado;
     }
     
-    @WebMethod(operationName = "consultarRegistros")
+    @WebMethod(operationName = "consultarRegistrosUsuarios")
     public Object consultarRegistros() throws Exception{
         //Usuarios usuario = new Usuarios();
         String _sql = "SELECT * FROM SDEduardo.usuarios";
@@ -80,7 +80,7 @@ public class UsuariosWebService {
         return _rs;
     }
     
-    @WebMethod(operationName = "consultarRegistroPorId")
+    @WebMethod(operationName = "consultarRegistroUsuariosPorId")
     public Object consultarRegistroPorId(int id) throws Exception{
         String _sql = "SELECT * FROM SDEduardo.usuarios WHERE id="+id;
         PreparedStatement _st = this._con.prepareStatement(_sql);
