@@ -22,7 +22,7 @@ public class ConductoresWebService {
     }
 
     @WebMethod(operationName = "agregarConductor")
-    public boolean agregarRegistro(@WebParam(name = "conductor") Object o) throws Exception {
+    public boolean agregarConductor(@WebParam(name = "conductor") Object o) throws Exception {
         Conductores conductor = (Conductores) o;
         String _sql = "INSERT INTO SDEduardo.conductores (nombreCompleto, descripcion, ife, curp, rfc, licencia, vigenciaLicencia, telefono) VALUES (?,?,?,?,?,?,?,?)";
         PreparedStatement _st = this._con.prepareStatement(_sql);
@@ -64,8 +64,8 @@ public class ConductoresWebService {
         return resultado;
     }
 
-    @WebMethod(operationName = "consultarRegistros")
-    public Object consultarRegistros() throws Exception {
+    @WebMethod(operationName = "consultarRegistrosConductores")
+    public Object consultarRegistrosConductores() throws Exception {
         //Conductores conductor = new Conductores();
         String _sql = "SELECT * FROM SDEduardo.conductores";
         PreparedStatement _st = this._con.prepareStatement(_sql);
@@ -76,8 +76,8 @@ public class ConductoresWebService {
         return _rs;
     }
 
-    @WebMethod(operationName = "consultarRegistroPorId")
-    public Object consultarRegistroPorId(int id) throws Exception {
+    @WebMethod(operationName = "consultarRegistroConductoresPorId")
+    public Object consultarRegistroConductoresPorId(int id) throws Exception {
         String _sql = "SELECT * FROM SDEduardo.conductores WHERE id=" + id;
         PreparedStatement _st = this._con.prepareStatement(_sql);
         if (_st != null) {
