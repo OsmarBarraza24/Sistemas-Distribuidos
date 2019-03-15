@@ -10,6 +10,8 @@ package entity;
  * @author eduardolara
  */
 public class Usuarios {
+    
+    //Prueba
 
     private int id = 0;
     private String nombreCompleto = new String();
