@@ -5,7 +5,7 @@
  */
 package Service;
 
-import entity.Conductores;
+
 import entity.EquipoGPS;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,7 +19,7 @@ import javax.jws.WebParam;
  *
  * @author JoelRuiz
  */
-@WebService(serviceName = "ConductoresWebService")
+@WebService(serviceName = "EquipoGPSWebService")
 public class EquipoGPSWebService {
 
     private Connection _con;
