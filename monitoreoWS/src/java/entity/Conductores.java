@@ -9,6 +9,8 @@ package entity;
  *
  * @author eduardolara
  */
+
+//edaurdo
 public class Conductores {
 
     private int id = 0;
